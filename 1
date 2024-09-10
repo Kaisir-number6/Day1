@@ -1,0 +1,78 @@
+import java.util.TreeMap;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        EmployeeManager manager=new EmployeeManager();
+        manager.addEmployee("A",21);
+        manager.addEmployee("B",26);
+        manager.addEmployee("C",28);
+
+        manager.deleteEmployee("B");
+
+        manager.addEmployee("A",29);
+        manager.addEmployee("D",31);
+
+
+        System.out.println("ALl employee");
+        manager.printEmployees();
+    }
+}
+
+
+public class EmployeeManager
+{
+    private TreeMap<String,Employee> employees;
+
+    public EmployeeManager()
+    {
+        employees =new TreeMap<>();
+    }
+
+    public void addEmployee(String name,int age)
+    {
+        if (!employees.containsKey(name))
+        {
+            employees.put(name,new Employee(name,age));
+        }else
+        {
+            System.out.println("Error"+name+"already exist" );
+        }
+    }
+    public void deleteEmployee(String name)
+    {
+        if (employees.containsKey(name))
+        {employees.remove(name);}else
+        {
+            System.out.println("Error"+name+"not found");
+        }
+    }
+    public void printEmployees()
+    {
+        for (Employee employee:employees.values())
+        {System.out.println(employee);}
+    }
+}
+
+
+
+
+public class Employee {
+          private String name;
+          private int age;
+
+          public Employee(String name, int age )
+          {
+              this.age=age;
+              this.name=name;
+          }
+          public String getName(){return name;}
+          public int getAge(){return age;}
+
+          public String toString()
+          {
+              return name+","+age;
+          }
+        }
+
+
